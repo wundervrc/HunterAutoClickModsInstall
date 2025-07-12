@@ -3,10 +3,13 @@ import pyautogui
 import cv2
 import time
 import keyboard
+import pillow
 
-
-done = False
+#settings for hunter:
 confidence = 0.7 #Change this to change the confidence required for the search to be successful.
+
+#Enjoy :3
+done = False
 input("Hold Q to quit when done :3 ~wunder <3")
 while not done: #Loop until user input every 1 second
     time.sleep(1) #This does wait every 1 second, it could possibly run even quicker to shave off time between button presses when they occur but I didn't want to spike cpu usage too much lol. Perhaps it can be changed assuming the library we are using for image recognition is not too heavy.
@@ -29,6 +32,5 @@ while not done: #Loop until user input every 1 second
         #time.sleep(0.1) #Remove the hashtag on the left side of the word time if this is firing too quickly, it will make it wait however many of a second you enter.
         pyautogui.leftClick(center_x,center_y) #it will click instantly ideally, if this is too quick we can make it take a small bit of time.
         print("image found and clicked, Hold Q to quit when done")
-
 
 print("All done! c:")

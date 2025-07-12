@@ -35,3 +35,4 @@ while not done: #Loop until user input every 1 second
         pyautogui.move(-h * 2, -w * 2)  # The shitty mod stuff was checking if mouse in same place not to allow click so we shift it to the left lol.
 
 print("All done! c:")
+#edittt?

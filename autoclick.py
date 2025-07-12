@@ -16,7 +16,6 @@ print("Hold Q to quit when done :3 ~wunder <3")
 button_image = cv2.imread("button_image.png")  # Should be local directory. #Moved up here, only has to be read once.
 h, w, _ = button_image.shape #Moved up here, only read once.
 while not done: #Loop until user input every 1 second
-    pyautogui.move(-h*2,-w*2) #The shitty mod stuff was checking if mouse in same place not to allow click so we shift it to the left lol.
     time.sleep(timeToWaitBetweenChecks) #This does wait every 1 second, it could possibly run even quicker to shave off time between button presses when they occur but I didn't want to spike cpu usage too much lol. Perhaps it can be changed assuming the library we are using for image recognition is not too heavy.
     if(keyboard.is_pressed("Q") or keyboard.is_pressed("q")):
         done = True #We are done
@@ -33,5 +32,6 @@ while not done: #Loop until user input every 1 second
         center_y = max_loc[1] + h // 2
         pyautogui.leftClick(center_x,center_y)
         print("image found and clicked, Hold Q to quit when done")
+        pyautogui.move(-h * 2, -w * 2)  # The shitty mod stuff was checking if mouse in same place not to allow click so we shift it to the left lol.
 
 print("All done! c:")

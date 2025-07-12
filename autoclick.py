@@ -13,7 +13,10 @@ timeToWaitBetweenChecks = 1 #1 second, can be fractional. like 0.5  lower values
 
 done = False
 print("Hold Q to quit when done :3 ~wunder <3")
+button_image = cv2.imread("button_image.png")  # Should be local directory. #Moved up here, only has to be read once.
+h, w, _ = button_image.shape #Moved up here, only read once.
 while not done: #Loop until user input every 1 second
+    pyautogui.move(-h*2,-w*2) #The shitty mod stuff was checking if mouse in same place not to allow click so we shift it to the left lol.
     time.sleep(timeToWaitBetweenChecks) #This does wait every 1 second, it could possibly run even quicker to shave off time between button presses when they occur but I didn't want to spike cpu usage too much lol. Perhaps it can be changed assuming the library we are using for image recognition is not too heavy.
     if(keyboard.is_pressed("Q") or keyboard.is_pressed("q")):
         done = True #We are done
@@ -23,11 +26,9 @@ while not done: #Loop until user input every 1 second
     screenshot_np = np.array(screenshot)
     screenshot_np = cv2.cvtColor(screenshot_np, cv2.COLOR_RGB2BGR)
 
-    button_image = cv2.imread("button_image.png") #Should be local directory.
     result = cv2.matchTemplate(screenshot_np,button_image,cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     if max_val >= confidence:
-        h,w,_ = button_image.shape
         center_x = max_loc[0] + w // 2 # I assume the max_loc is the left/right most and top/bottom most. Which is why the site recommends adding the length of the image divided by 2 thus giving center.
         center_y = max_loc[1] + h // 2
         pyautogui.leftClick(center_x,center_y)

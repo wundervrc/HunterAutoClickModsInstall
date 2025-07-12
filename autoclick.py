@@ -3,7 +3,7 @@ import pyautogui
 import cv2
 import time
 import keyboard
-import pillow
+import PIL
 
 #settings for hunter:
 confidence = 0.7 #Change this to change the confidence required for the search to be successful.
